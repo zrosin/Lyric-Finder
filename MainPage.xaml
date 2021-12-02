@@ -9,6 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <ComboBox Margin="1148,125,136,0" Height="75" HorizontalAlignment="Stretch"/>
+        <ListView Margin="528,295,136,184"/>
+        <Button Content="Search" Height="76" Margin="750,125,455,0" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+        <TextBox Text="TextBox" TextWrapping="Wrap" Margin="484,130,815,799"/>
+
+
+
 
     </Grid>
 </Page>
