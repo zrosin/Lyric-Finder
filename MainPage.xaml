@@ -14,7 +14,7 @@
             <ComboBoxItem Content="Lyrics"/>
             <ComboBoxItem Content="Artist"/>
         </ComboBox>
-        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{x:Bind SongList.Tracks, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top">
+        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{x:Bind music.message.body.track_list, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:TrackViewModel">
                     <StackPanel>

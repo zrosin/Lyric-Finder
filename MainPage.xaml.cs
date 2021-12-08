@@ -13,17 +13,15 @@ namespace Lyric_Finder
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public SongListViewModel SongList { get; set; }
-        public TrackViewModel Track { get; set; }
+        public MusicViewModel music;
 
         public MainPage()
         {
             this.InitializeComponent();
-            SongList = new SongListViewModel();
-            Track = new TrackViewModel();
+            music = new MusicViewModel();
 
         }
-        public async void GetSongList(string search, string type)
+        public async void GetSearch(string search, string type)
         {
 
             
@@ -45,9 +43,8 @@ namespace Lyric_Finder
             using (var httpClient = new HttpClient())
             {
                 var json = await httpClient.GetStringAsync(requestUrl);
-                //dynamic info = JsonConvert.DeserializeObject(json);
-                //Song.Lyrics = info.message.body.lyrics.lyrics_body;
-                SongList = JsonConvert.DeserializeObject<SongListViewModel>(json);
+                
+                music = JsonConvert.DeserializeObject<MusicViewModel>(json);
             }
         }
         private void SearchClick(object sender, RoutedEventArgs e)
@@ -56,7 +53,7 @@ namespace Lyric_Finder
             {
                 string type = ((ComboBoxItem)searchType.SelectedItem).Content.ToString();
 
-                GetSongList(searchText.Text, type);
+                GetSearch(searchText.Text, type);
             }
             
         }
