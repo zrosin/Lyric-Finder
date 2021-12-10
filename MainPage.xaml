@@ -2,14 +2,33 @@
     x:Class="Lyric_Finder.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Lyric_Finder"
+    xmlns:local="using:Lyric_Finder.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="Button" Margin="855,443,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <ComboBox x:Name="searchType" Margin="0,123,136,0" Height="40" HorizontalAlignment="Right" Width="194">
+            <ComboBoxItem Content="Title" IsSelected="True"></ComboBoxItem>
+            <ComboBoxItem Content="Lyrics"/>
+            <ComboBoxItem Content="Artist"/>
+        </ComboBox>
+        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{x:Bind music.message.body.track_list, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:TrackViewModel">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind track_name, Mode=OneWay}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{x:Bind artist_name, Mode=OneWay}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Search" Height="40" Margin="0,123,369,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="137" Click="SearchClick"/>
+        <TextBox x:Name="searchText" PlaceholderText="Search..." TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,127,554,0" HorizontalAlignment="Right" Width="418"/>
+
+
+        <Button Content="Button" Margin="0,0,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Page>
