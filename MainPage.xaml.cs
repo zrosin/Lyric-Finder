@@ -57,5 +57,14 @@ namespace Lyric_Finder
             }
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var parameters = new LyricPageParams();
+            parameters.Title = "Name";
+            parameters.Artist = "Name1";
+            parameters.ID = "5920049";
+            this.Frame.Navigate(typeof(LyricPage), parameters);
+        }
     }
 }
