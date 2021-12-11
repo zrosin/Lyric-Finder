@@ -6,15 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="538" Width="814">
 
     <Grid>
-        <ComboBox x:Name="searchType" Margin="0,123,136,0" Height="40" HorizontalAlignment="Right" Width="194">
+        <ComboBox x:Name="searchType"  Margin="0,105,203,0" Height="40" HorizontalAlignment="Right" Width="194">
             <ComboBoxItem Content="Title" IsSelected="True"></ComboBoxItem>
             <ComboBoxItem Content="Lyrics"/>
             <ComboBoxItem Content="Artist"/>
         </ComboBox>
-        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{ x:Bind songs, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top" ItemClick="SearchListView_ItemClick" IsItemClickEnabled="True">
+        <Button x:Name="searchButton" Content="Search" Height="40" Width="139" Click="SearchClick" Margin="629,105,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="searchText" PlaceholderText="Search..." MaxWidth="600" TextWrapping="Wrap" Height="37" Margin="417,37,46,0" VerticalAlignment="Top"/>
+        <ListView  x:Name="SearchListView" Margin="417,187,46,28" ItemsSource="{ x:Bind songs, Mode=OneWay}" ItemClick="SearchListView_ItemClick" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Song">
                     <StackPanel>
@@ -24,8 +26,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="Search" Height="40" Margin="0,123,369,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="137" Click="SearchClick"/>
-        <TextBox x:Name="searchText" PlaceholderText="Search..." TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,127,554,0" HorizontalAlignment="Right" Width="418"/>
+
 
     </Grid>
 </Page>
