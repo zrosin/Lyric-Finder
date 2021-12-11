@@ -57,9 +57,6 @@ namespace Lyric_Finder
                 lyrics = info.message.body.lyrics.lyrics_body;
             }
             return lyrics;
-           
         }
-
-
     }
 }
