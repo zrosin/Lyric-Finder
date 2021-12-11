@@ -31,7 +31,8 @@
         </ListView>
 
 
-        <ListView x:Name="favoritesListView" Margin="20,50,0,0" Width="200" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList}">
+        <ListView x:Name="FavoritesListView" Margin="20,50,0,0" Width="200" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList}" 
+                  IsItemClickEnabled="True" ItemClick="FavoritesListView_ItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

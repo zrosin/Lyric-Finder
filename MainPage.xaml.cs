@@ -32,7 +32,7 @@ namespace Lyric_Finder
                 {
                     favoriteSongsList.Add(song);
                 }
-                favoritesListView.ItemsSource = favoriteSongsList;
+                FavoritesListView.ItemsSource = favoriteSongsList;
             }
         }
         
@@ -61,6 +61,20 @@ namespace Lyric_Finder
             parameters.Artist = send.Artist;
             parameters.ID = send.Id;
             
+            Frame.Navigate(typeof(LyricPage), parameters);
+        }
+
+        private void FavoritesListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Song send = e.ClickedItem as Song;
+
+            var parameters = new LyricPageParams();
+
+            parameters.Title = send.Title;
+            parameters.Artist = send.Artist;
+            parameters.ID = send.Id;
+            parameters.Lyrics = send.Lyrics;
+
             Frame.Navigate(typeof(LyricPage), parameters);
         }
     }
