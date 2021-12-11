@@ -65,6 +65,9 @@ namespace Lyric_Finder
                 db.Favorites.Add(Song.song);
                 db.SaveChanges();
             }
+
+            //disable button to show that task is completed
+            favoriteButton.IsEnabled = false;
         }
     }
 }
