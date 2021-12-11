@@ -45,6 +45,7 @@ namespace Lyric_Finder
             
         }
 
+
         private void SearchListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             /*
@@ -56,6 +57,7 @@ namespace Lyric_Finder
             parameters.ID = track.track_id;
             this.Frame.Navigate(typeof(LyricPage), parameters);
             */
+
         }
     }
 }

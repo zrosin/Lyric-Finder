@@ -28,7 +28,7 @@
         <TextBox x:Name="searchText" PlaceholderText="Search..." TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,127,554,0" HorizontalAlignment="Right" Width="418"/>
 
 
-
+        <Button Content="Button" Margin="0,0,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Page>
