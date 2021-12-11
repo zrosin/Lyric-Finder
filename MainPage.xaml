@@ -31,7 +31,7 @@
         </ListView>
 
 
-        <ListView x:Name="FavoritesListView" Margin="20,50,0,0" Width="200" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList.favoriteSongs}" 
+        <ListView x:Name="FavoritesListView" Margin="20,50,0,0" Width="300" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList.favoriteSongs}" 
                   IsItemClickEnabled="True" ItemClick="FavoritesListView_ItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -42,7 +42,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock Text="Favorites" HorizontalAlignment="Left" Margin="93,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Favorites" HorizontalAlignment="Left" Margin="143,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Content="About" Margin="0,1,0,0" VerticalAlignment="Top" Click="AboutButton_Click"/>
 
     </Grid>
 </Page>

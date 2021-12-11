@@ -71,5 +71,10 @@ namespace Lyric_Finder
 
             Frame.Navigate(typeof(LyricPage), parameters);
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AboutPage));
+        }
     }
 }
