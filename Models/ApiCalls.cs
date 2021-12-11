@@ -22,6 +22,10 @@ namespace Lyric_Finder.Models
             {
                 var json = await httpClient.GetStringAsync(requestUrl);
                 dynamic info = JsonConvert.DeserializeObject(json);
+                if(info.message.header.status_code != 200)
+                {
+                    return "Server error.\n\nThis song may have been deleted, or has no lyrics.\nPlease try a different song.";
+                }
                 lyrics = info.message.body.lyrics.lyrics_body;
             }
             return lyrics;
