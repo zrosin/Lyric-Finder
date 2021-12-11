@@ -14,57 +14,50 @@ namespace Lyric_Finder
     public sealed partial class MainPage : Page
     {
         public MusicViewModel music;
+        
+        public MessageViewModel message;
+        public BodyViewModel body;
+        public TrackItemViewModel trackItem;
+        public TrackViewModel track;
+        
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
-
-        }
-        public async void GetSearch(string search, string type)
-        {
-
+            message = new MessageViewModel();
+            body = new BodyViewModel();
+            trackItem = new TrackItemViewModel();
+            track = new TrackViewModel();
             
-            const string baseUrl = "https://api.musixmatch.com/ws/1.1/";
-            const string apiKey = "919ade046d0a70d84044debc6ac28854";
-            Uri requestUrl;
-            if (type == "Artist")
-            {
-                requestUrl = new Uri($"{baseUrl}track.search?q_artist={search}&apikey={apiKey}");
-            }
-            else if (type == "Lyrics")
-            {
-                requestUrl = new Uri($"{baseUrl}track.search?q_lyrics={search}&apikey={apiKey}");
-            }
-            else
-            {
-                requestUrl = new Uri($"{baseUrl}track.search?q_track={search}&apikey={apiKey}");
-            }
-            using (var httpClient = new HttpClient())
-            {
-                var json = await httpClient.GetStringAsync(requestUrl);
-                
-                music = JsonConvert.DeserializeObject<MusicViewModel>(json);
-            }
+
         }
+       
         private void SearchClick(object sender, RoutedEventArgs e)
         {
             if (searchType.SelectedItem != null)
             {
                 string type = ((ComboBoxItem)searchType.SelectedItem).Content.ToString();
 
-                GetSearch(searchText.Text, type);
+                music.GetSearch(searchText.Text, type);
+               
             }
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void SearchListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            /*
+            track = SearchListView.SelectedItem as TrackViewModel;
+
             var parameters = new LyricPageParams();
-            parameters.Title = "Title";
-            parameters.Artist = "Artist";
-            parameters.ID = "119297589";
+            parameters.Title = track.track_name;
+            parameters.Artist = track.artist_name;
+            parameters.ID = track.track_id;
             this.Frame.Navigate(typeof(LyricPage), parameters);
+            */
+
         }
     }
 }
