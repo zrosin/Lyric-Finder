@@ -41,7 +41,7 @@ namespace Lyric_Finder.Models
                     
                     song.Artist = track.track.artist_name;
                     song.Title = track.track.track_name;
-                    song.MusixmatchID = track.track.commontrack_id;
+                    song.Id = track.track.commontrack_id;
                     songs.Add(song);
                 }
 

@@ -58,7 +58,7 @@ namespace Lyric_Finder
             
             parameters.Title = send.Title;
             parameters.Artist = send.Artist;
-            parameters.ID = send.MusixmatchID;
+            parameters.ID = send.Id;
             
             Frame.Navigate(typeof(LyricPage), parameters);
         }
