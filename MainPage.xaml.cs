@@ -1,4 +1,5 @@
-﻿using Lyric_Finder.ViewModels;
+﻿using Lyric_Finder.Models;
+using Lyric_Finder.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
@@ -14,13 +15,16 @@ namespace Lyric_Finder
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MusicViewModel music;
+        MusicViewModel music;
+        ObservableCollection<Song> songs;
+
         private ObservableCollection<Models.Song> favoriteSongsList = new ObservableCollection<Models.Song>();
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
+            this.DataContext = songs;
 
             using (var db = new Models.FavoriteSongsContext())
             {
@@ -30,50 +34,33 @@ namespace Lyric_Finder
                 }
             }
         }
-        public async void GetSearch(string search, string type)
-        {
+        
 
-            
-            const string baseUrl = "https://api.musixmatch.com/ws/1.1/";
-            const string apiKey = "919ade046d0a70d84044debc6ac28854";
-            Uri requestUrl;
-            if (type == "Artist")
-            {
-                requestUrl = new Uri($"{baseUrl}track.search?q_artist={search}&apikey={apiKey}");
-            }
-            else if (type == "Lyrics")
-            {
-                requestUrl = new Uri($"{baseUrl}track.search?q_lyrics={search}&apikey={apiKey}");
-            }
-            else
-            {
-                requestUrl = new Uri($"{baseUrl}track.search?q_track={search}&apikey={apiKey}");
-            }
-            using (var httpClient = new HttpClient())
-            {
-                var json = await httpClient.GetStringAsync(requestUrl);
-                
-                music = JsonConvert.DeserializeObject<MusicViewModel>(json);
-            }
-        }
-        private void SearchClick(object sender, RoutedEventArgs e)
+        private async void SearchClick(object sender, RoutedEventArgs e)
         {
             if (searchType.SelectedItem != null)
             {
                 string type = ((ComboBoxItem)searchType.SelectedItem).Content.ToString();
 
-                GetSearch(searchText.Text, type);
+                int a = await music.QueryTrack(searchText.Text, type);
+
+                songs = music.songList;
+
+                SearchListView.ItemsSource = songs;
             }
-            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SearchListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            Song send = e.ClickedItem as Song;
+
             var parameters = new LyricPageParams();
-            parameters.Title = "Title";
-            parameters.Artist = "Artist";
-            parameters.ID = "119297589";
-            this.Frame.Navigate(typeof(LyricPage), parameters);
+            
+            parameters.Title = send.Title;
+            parameters.Artist = send.Artist;
+            parameters.ID = send.MusixmatchID;
+            
+            Frame.Navigate(typeof(LyricPage), parameters);
         }
     }
 }
