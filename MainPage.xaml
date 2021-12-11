@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="538" Width="814">
 
     <Grid>
-      
+
         <ComboBox x:Name="searchType"  Margin="0,105,203,0" Height="40" HorizontalAlignment="Right" Width="194">
             <ComboBoxItem Content="Title" IsSelected="True"></ComboBoxItem>
             <ComboBoxItem Content="Lyrics"/>
@@ -17,8 +17,8 @@
         </ComboBox>
         <Button x:Name="searchButton" Content="Search" Height="40" Width="139" Click="SearchClick" Margin="629,105,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="searchText" PlaceholderText="Search..." MaxWidth="600" TextWrapping="Wrap" Height="37" Margin="417,37,46,0" VerticalAlignment="Top"/>
-      
-      
+
+
         <ListView  x:Name="SearchListView" Margin="417,187,46,28" ItemsSource="{ x:Bind songs, Mode=OneWay}" ItemClick="SearchListView_ItemClick" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Song">
@@ -30,9 +30,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-      
-        <Button Content="Button" Margin="1032,10,0,0" VerticalAlignment="Top" Click="Button_Click" Height="33" Width="62"/>
-        <ListView x:Name="favoritesListView" Width="200" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList}">
+
+        <ListView x:Name="FavoritesListView" Margin="20,50,0,0" Width="200" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList}" 
+                  IsItemClickEnabled="True" ItemClick="FavoritesListView_ItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -42,6 +42,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-      
+        <TextBlock Text="Favorites" HorizontalAlignment="Left" Margin="93,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>

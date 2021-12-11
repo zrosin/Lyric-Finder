@@ -18,13 +18,13 @@ namespace Lyric_Finder
         MusicViewModel music;
         ObservableCollection<Song> songs;
 
-        private ObservableCollection<Models.Song> favoriteSongsList = new ObservableCollection<Models.Song>();
+        private ObservableCollection<Song> favoriteSongsList = new ObservableCollection<Song>();
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
-            this.DataContext = songs;
+            //this.DataContext = songs;
 
             using (var db = new Models.FavoriteSongsContext())
             {
@@ -32,6 +32,7 @@ namespace Lyric_Finder
                 {
                     favoriteSongsList.Add(song);
                 }
+                FavoritesListView.ItemsSource = favoriteSongsList;
             }
         }
         
@@ -58,8 +59,22 @@ namespace Lyric_Finder
             
             parameters.Title = send.Title;
             parameters.Artist = send.Artist;
-            parameters.ID = send.MusixmatchID;
+            parameters.ID = send.Id;
             
+            Frame.Navigate(typeof(LyricPage), parameters);
+        }
+
+        private void FavoritesListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Song send = e.ClickedItem as Song;
+
+            var parameters = new LyricPageParams();
+
+            parameters.Title = send.Title;
+            parameters.Artist = send.Artist;
+            parameters.ID = send.Id;
+            parameters.Lyrics = send.Lyrics;
+
             Frame.Navigate(typeof(LyricPage), parameters);
         }
     }
