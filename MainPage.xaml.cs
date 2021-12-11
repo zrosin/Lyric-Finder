@@ -17,31 +17,12 @@ namespace Lyric_Finder
     {
         MusicViewModel music;
         ObservableCollection<Song> songs;
-        Song sending;
-        /*
-        public MessageViewModel message;
-        public BodyViewModel body;
-        public TrackItemViewModel trackItem;
-        public TrackViewModel track;
-        */
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
-            sending = new Song();
             this.DataContext = songs;
-
-
-
-
-            /*
-            message = new MessageViewModel();
-            body = new BodyViewModel();
-            trackItem = new TrackItemViewModel();
-            track = new TrackViewModel();
-            */
-
 
         }
         
@@ -57,18 +38,12 @@ namespace Lyric_Finder
                 songs = music.songList;
 
                 SearchListView.ItemsSource = songs;
-                
-
             }
-
         }
-
 
         private void SearchListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
-            
-            var send = e.ClickedItem as Song;
+            Song send = e.ClickedItem as Song;
 
             var parameters = new LyricPageParams();
             
@@ -76,9 +51,7 @@ namespace Lyric_Finder
             parameters.Artist = send.Artist;
             parameters.ID = send.MusixmatchID;
             
-            this.Frame.Navigate(typeof(LyricPage), parameters);
-            
-
+            Frame.Navigate(typeof(LyricPage), parameters);
         }
     }
 }
