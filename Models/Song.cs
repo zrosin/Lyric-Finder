@@ -11,8 +11,5 @@ namespace Lyric_Finder.Models
         public string Artist { get; set; }
         public string Id { get; set; }
         public string Lyrics { get; set; }
-        public bool IsFavorite { get; set; }
-
-        
     }
 }

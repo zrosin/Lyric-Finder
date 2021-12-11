@@ -60,17 +60,6 @@ namespace Lyric_Finder.ViewModels
             }
         }
 
-        public bool IsFavorite
-        {
-            get { return song.IsFavorite; }
-
-            set
-            {
-                song.IsFavorite = value;
-                OnPropertyChanged("IsFavorite");
-            }
-        }
-
         public async Task<int> GetLyrics()
         {
             song.Lyrics = await ApiCalls.GetSongLyrics(song.Id);
