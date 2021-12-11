@@ -1,6 +1,8 @@
-﻿using Lyric_Finder.ViewModels;
+﻿using Lyric_Finder.Models;
+using Lyric_Finder.ViewModels;
 using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,6 +16,7 @@ namespace Lyric_Finder
     public sealed partial class MainPage : Page
     {
         MusicViewModel music;
+        ObservableCollection<Song> songs;
         
         /*
         public MessageViewModel message;
@@ -26,6 +29,10 @@ namespace Lyric_Finder
         {
             this.InitializeComponent();
             music = new MusicViewModel();
+            this.DataContext = songs;
+
+
+
 
             /*
             message = new MessageViewModel();
@@ -33,35 +40,40 @@ namespace Lyric_Finder
             trackItem = new TrackItemViewModel();
             track = new TrackViewModel();
             */
-            
+
 
         }
         
 
-        private void SearchClick(object sender, RoutedEventArgs e)
+        private async void SearchClick(object sender, RoutedEventArgs e)
         {
             if (searchType.SelectedItem != null)
             {
                 string type = ((ComboBoxItem)searchType.SelectedItem).Content.ToString();
 
-                music.QueryTrack(searchText.Text, type);
-               
+                int a = await music.QueryTrack(searchText.Text, type);
+
+                songs = music.songList;
+
+                SearchListView.ItemsSource = songs;
+                
+
             }
-            
+
         }
 
 
         private void SearchListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            /*
-            track = SearchListView.SelectedItem as TrackViewModel;
+            
+            var send = SearchListView.SelectedItem as Song;
 
             var parameters = new LyricPageParams();
-            parameters.Title = track.track_name;
-            parameters.Artist = track.artist_name;
-            parameters.ID = track.track_id;
+            parameters.Title = send.Title;
+            parameters.Artist = send.Artist;
+            parameters.ID = send.MusixmatchID;
             this.Frame.Navigate(typeof(LyricPage), parameters);
-            */
+            
 
         }
     }

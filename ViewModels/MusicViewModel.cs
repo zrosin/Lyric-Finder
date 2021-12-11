@@ -13,18 +13,20 @@ namespace Lyric_Finder.ViewModels
 
     public class MusicViewModel
     {
-
+        public Song song;
 
         public ObservableCollection<Song> songList;
         
         public MusicViewModel()
         {
             songList = new ObservableCollection<Song>();
+            song = new Song();
         }
 
-        public async void QueryTrack(string search, string type)
+        public async Task<int> QueryTrack(string search, string type)
         {
             songList = await ApiCalls.GetSearch(search, type);
+            return 1;
         }
 
         /*

@@ -2,7 +2,7 @@
     x:Class="Lyric_Finder.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Lyric_Finder.ViewModels"
+    xmlns:local="using:Lyric_Finder.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -14,9 +14,9 @@
             <ComboBoxItem Content="Lyrics"/>
             <ComboBoxItem Content="Artist"/>
         </ComboBox>
-        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{ x:Bind music.songList, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top" ItemClick="SearchListView_ItemClick">
+        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{ x:Bind songs, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top" ItemClick="SearchListView_ItemClick">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:MusicViewModel">
+                <DataTemplate x:DataType="local:Song">
                     <StackPanel>
                         <TextBlock Text="{ Binding Path=Title, Mode=OneWay}" FontWeight="Bold"></TextBlock>
                         <TextBlock Text="{ Binding Path=Artist, Mode=OneWay}"></TextBlock>
