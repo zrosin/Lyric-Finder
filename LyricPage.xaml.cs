@@ -38,8 +38,8 @@ namespace Lyric_Finder
             Song.Title = parameters.Title;
             Song.Artist = parameters.Artist;
             Song.MusixmatchID = parameters.ID;
-            string lyrics = await GetSongLyrics(Song.MusixmatchID);
-            Song.Lyrics = lyrics;
+            Song.Lyrics = await GetSongLyrics(Song.MusixmatchID);
+            this.DataContext = Song;
         }
 
         private async Task<string> GetSongLyrics(string ID)

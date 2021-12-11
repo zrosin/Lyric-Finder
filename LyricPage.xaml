@@ -9,8 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1014">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,58,0,0" Text="{x:Bind Song.Title, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,95,0,0" Text="{x:Bind Song.Artist, Mode=OneWay}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="20,194,20,20" Text="{x:Bind Song.Lyrics, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top" Height="Auto" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,58,0,0" Text="{Binding Path=Title, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,95,0,0" Text="{Binding Path=Artist, Mode=OneWay}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="20,194,20,20" Text="{Binding Path=Lyrics, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
     </Grid>
 </Page>
