@@ -17,7 +17,7 @@ namespace Lyric_Finder
     {
         MusicViewModel music;
         ObservableCollection<Song> songs;
-        
+        Song sending;
         /*
         public MessageViewModel message;
         public BodyViewModel body;
@@ -29,6 +29,7 @@ namespace Lyric_Finder
         {
             this.InitializeComponent();
             music = new MusicViewModel();
+            sending = new Song();
             this.DataContext = songs;
 
 
@@ -66,12 +67,15 @@ namespace Lyric_Finder
         private void SearchListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             
-            var send = SearchListView.SelectedItem as Song;
+            
+            var send = e.ClickedItem as Song;
 
             var parameters = new LyricPageParams();
+            
             parameters.Title = send.Title;
             parameters.Artist = send.Artist;
             parameters.ID = send.MusixmatchID;
+            
             this.Frame.Navigate(typeof(LyricPage), parameters);
             
 
