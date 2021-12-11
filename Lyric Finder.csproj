@@ -128,6 +128,7 @@
     <Compile Include="Models\ApiCalls.cs" />
     <Compile Include="Models\FavoriteSongsContext.cs" />
     <Compile Include="Models\Song.cs" />
+    <Compile Include="ViewModels\FavoriteSongsViewModel.cs" />
     <Compile Include="ViewModels\MusicViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SongViewModel.cs" />
