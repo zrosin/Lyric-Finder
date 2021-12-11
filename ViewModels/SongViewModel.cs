@@ -36,13 +36,13 @@ namespace Lyric_Finder.ViewModels
             }
         }
 
-        public string MusixmatchID
+        public string Id
         {
-            get { return song.MusixmatchID; }
+            get { return song.Id; }
 
             set
             {
-                song.MusixmatchID = value;
+                song.Id = value;
                 OnPropertyChanged("MusixmatchID");
             }
         }

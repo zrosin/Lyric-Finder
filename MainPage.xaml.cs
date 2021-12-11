@@ -1,6 +1,7 @@
 ﻿using Lyric_Finder.ViewModels;
 using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,12 +15,20 @@ namespace Lyric_Finder
     public sealed partial class MainPage : Page
     {
         public MusicViewModel music;
+        private ObservableCollection<Models.Song> favoriteSongsList = new ObservableCollection<Models.Song>();
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
 
+            using (var db = new Models.FavoriteSongsContext())
+            {
+                foreach (var song in db.Favorites)
+                {
+                    favoriteSongsList.Add(song);
+                }
+            }
         }
         public async void GetSearch(string search, string type)
         {

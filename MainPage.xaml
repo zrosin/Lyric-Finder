@@ -28,7 +28,17 @@
         <TextBox x:Name="searchText" PlaceholderText="Search..." TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,127,554,0" HorizontalAlignment="Right" Width="418"/>
 
 
-        <Button Content="Button" Margin="0,0,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Button" Margin="1032,10,0,0" VerticalAlignment="Top" Click="Button_Click" Height="33" Width="62"/>
+        <ListView x:Name="favoritesListView" Width="200" HorizontalAlignment="Left" SelectionMode="Single" ItemsSource="{x:Bind favoriteSongsList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Title}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path=Artist}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </Page>
