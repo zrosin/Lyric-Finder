@@ -19,7 +19,7 @@
         <TextBox x:Name="searchText" PlaceholderText="Search..." MaxWidth="600" TextWrapping="Wrap" Height="37" Margin="417,37,46,0" VerticalAlignment="Top"/>
 
 
-        <ListView  x:Name="SearchListView" Margin="417,187,46,28" ItemsSource="{ x:Bind songs, Mode=OneWay}" ItemClick="SearchListView_ItemClick" IsItemClickEnabled="True">
+        <ListView  x:Name="SearchListView" Margin="417,187,46,28" ItemsSource="{ x:Bind music.songList, Mode=OneWay}" ItemClick="SearchListView_ItemClick" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Song">
                     <StackPanel>

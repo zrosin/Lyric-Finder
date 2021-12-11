@@ -26,8 +26,8 @@ namespace Lyric_Finder
             music = new MusicViewModel();
             //this.DataContext = songs;
             FavoritesListView.ItemsSource = favoriteSongsList.favoriteSongs;
-
             
+
         }
         
 
@@ -39,9 +39,7 @@ namespace Lyric_Finder
 
                 int a = await music.QueryTrack(searchText.Text, type);
 
-                songs = music.songList;
-
-                SearchListView.ItemsSource = songs;
+                SearchListView.ItemsSource = music.songList;
             }
         }
 
