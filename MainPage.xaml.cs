@@ -18,13 +18,13 @@ namespace Lyric_Finder
         MusicViewModel music;
         ObservableCollection<Song> songs;
 
-        private ObservableCollection<Models.Song> favoriteSongsList = new ObservableCollection<Models.Song>();
+        private ObservableCollection<Song> favoriteSongsList = new ObservableCollection<Song>();
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
-            this.DataContext = songs;
+            //this.DataContext = songs;
 
             using (var db = new Models.FavoriteSongsContext())
             {
@@ -32,6 +32,7 @@ namespace Lyric_Finder
                 {
                     favoriteSongsList.Add(song);
                 }
+                favoritesListView.ItemsSource = favoriteSongsList;
             }
         }
         

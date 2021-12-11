@@ -7,7 +7,8 @@ namespace Lyric_Finder.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Song song;
+        //needs to be public to work with entity. this is a YUCKY way to write a class. MVVM sucks toes
+        public Song song;
 
         public SongViewModel()
         {

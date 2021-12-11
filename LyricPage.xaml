@@ -12,6 +12,6 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,60,0,0" Text="{Binding Path=Title, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,100,0,0" Text="{Binding Path=Artist, Mode=OneWay}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="20,150,20,20" Text="{Binding Path=Lyrics, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="favoriteButton" Content="Favorite" Margin="1059,48,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="favoriteButton" Content="Favorite" Margin="1059,48,0,0" VerticalAlignment="Top" Click="FavoriteButton_Click"/>
     </Grid>
 </Page>

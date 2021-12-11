@@ -1,4 +1,5 @@
-﻿using Lyric_Finder.ViewModels;
+﻿using Lyric_Finder.Models;
+using Lyric_Finder.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -16,6 +17,7 @@ namespace Lyric_Finder
         public string Title { get; set; }
         public string Artist { get; set; }
         public string ID { get; set; }
+        public string Lyrics { get; set; }
     }
 
 
@@ -38,7 +40,17 @@ namespace Lyric_Finder
             Song.Title = parameters.Title;
             Song.Artist = parameters.Artist;
             Song.Id = parameters.ID;
-            Song.Lyrics = await GetSongLyrics(Song.Id);
+            if(parameters.Lyrics == null)
+            {
+                Song.Lyrics = await GetSongLyrics(Song.Id);
+            }
+            else
+            {
+                favoriteButton.IsEnabled = false;
+                Song.Lyrics = parameters.Lyrics;
+            }
+
+
 
             this.DataContext = Song;
         }
@@ -57,6 +69,15 @@ namespace Lyric_Finder
                 lyrics = info.message.body.lyrics.lyrics_body;
             }
             return lyrics;
+        }
+
+        private void FavoriteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            using(var db = new FavoriteSongsContext())
+            {
+                db.Favorites.Add(Song.song);
+                db.SaveChanges();
+            }
         }
     }
 }
