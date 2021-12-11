@@ -14,12 +14,12 @@
             <ComboBoxItem Content="Lyrics"/>
             <ComboBoxItem Content="Artist"/>
         </ComboBox>
-        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{x:Bind music.message.body.track_list, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top">
+        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{x:Bind music.message.body.track_list, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top" ItemClick="SearchListView_ItemClick">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:TrackViewModel">
+                <DataTemplate x:DataType="local:TrackItemViewModel">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind track_name, Mode=OneWay}" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{x:Bind artist_name, Mode=OneWay}"></TextBlock>
+                        <TextBlock Text="{x:Bind track.track_name, Mode=OneWay}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{x:Bind track.artist_name, Mode=OneWay}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

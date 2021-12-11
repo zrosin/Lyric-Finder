@@ -1,7 +1,10 @@
 ﻿using Lyric_Finder.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +25,20 @@ namespace Lyric_Finder.ViewModels
             set { music.message = value; }
         }
 
-        
+        public void GetSearch(string search, string type)
+        {
+
+            this.music.GetSearch(search, type);
+
+
+            music.message.body.track_list.Clear();
+
+            foreach (var trackItem in music.message.body.track_list)
+            {
+                music.message.body.track_list.Add(trackItem);
+            }
+
+        }
     }
 
     public class MessageViewModel
@@ -51,7 +67,7 @@ namespace Lyric_Finder.ViewModels
             this.body = new Body();
         }
 
-        public List<TrackItem> track_list
+        public ObservableCollection<TrackItem> track_list
         {
             get { return body.track_list; }
             set { body.track_list = value; }
@@ -101,5 +117,22 @@ namespace Lyric_Finder.ViewModels
             set { track.track_name = value;}
         }
     }
+
+    /*
+    public class MusicSearcherViewModel
+    {
+        private MusicSearcher musicSearcher;
+        private Music music;
+
+        public void GetSearch(string search, string type)
+        {
+          music = musicSearcher.GetSearch(search, type);
+            
+
+            
+        }
+
+    }
+    */
 }
 
