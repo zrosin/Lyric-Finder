@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +31,12 @@ namespace Lyric_Finder
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            //Ensure db for favorite songs exists
+            using (var db = new Models.FavoriteSongsContext())
+            {
+                db.Database.EnsureCreated();
+            }
         }
 
         /// <summary>
@@ -47,6 +54,12 @@ namespace Lyric_Finder
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
+
+                // ADD: Register Navigated event handler
+                rootFrame.Navigated += OnNavigated;
+         
+                // ADD: Register BackRequested event handler
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -70,6 +83,27 @@ namespace Lyric_Finder
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
+            }
+        }
+
+        // ADD: Navigated event handler
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            // Determine if Back button should be visible
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                ((Frame)sender).CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
+        }
+
+        // ADD: BackRequested event handler
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame.CanGoBack)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
             }
         }
 
