@@ -40,6 +40,7 @@ namespace Lyric_Finder
             Song.Title = parameters.Title;
             Song.Artist = parameters.Artist;
             Song.Id = parameters.ID;
+            
             if(parameters.Lyrics == null)
             {
                 var a = await Song.GetLyrics();
@@ -49,8 +50,6 @@ namespace Lyric_Finder
                 favoriteButton.IsEnabled = false;
                 Song.Lyrics = parameters.Lyrics;
             }
-
-
 
             this.DataContext = Song;
         }
