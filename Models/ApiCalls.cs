@@ -11,6 +11,21 @@ namespace Lyric_Finder.Models
 {
     class ApiCalls
     {
+        public async static Task<string> GetSongLyrics(string ID)
+        {
+            const string baseUrl = "https://api.musixmatch.com/ws/1.1/";
+            const string apiKey = "919ade046d0a70d84044debc6ac28854";
+
+            Uri requestUrl = new Uri($"{baseUrl}track.lyrics.get?commontrack_id={ID}&apikey={apiKey}");
+            string lyrics;
+            using (var httpClient = new HttpClient())
+            {
+                var json = await httpClient.GetStringAsync(requestUrl);
+                dynamic info = JsonConvert.DeserializeObject(json);
+                lyrics = info.message.body.lyrics.lyrics_body;
+            }
+            return lyrics;
+        }
 
         public async static Task<ObservableCollection<Song>> GetSearch(string search, string type)
         {

@@ -1,5 +1,6 @@
 ﻿using Lyric_Finder.Models;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Lyric_Finder.ViewModels
 {
@@ -68,6 +69,12 @@ namespace Lyric_Finder.ViewModels
                 song.IsFavorite = value;
                 OnPropertyChanged("IsFavorite");
             }
+        }
+
+        public async Task<int> GetLyrics()
+        {
+            song.Lyrics = await ApiCalls.GetSongLyrics(song.Id);
+            return 1;
         }
 
         private void OnPropertyChanged(string property)

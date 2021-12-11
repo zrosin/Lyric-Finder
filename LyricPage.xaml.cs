@@ -42,7 +42,7 @@ namespace Lyric_Finder
             Song.Id = parameters.ID;
             if(parameters.Lyrics == null)
             {
-                Song.Lyrics = await GetSongLyrics(Song.Id);
+                var a = await Song.GetLyrics();
             }
             else
             {
@@ -55,24 +55,11 @@ namespace Lyric_Finder
             this.DataContext = Song;
         }
 
-        private async Task<string> GetSongLyrics(string ID)
-        {
-            const string baseUrl = "https://api.musixmatch.com/ws/1.1/";
-            const string apiKey = "919ade046d0a70d84044debc6ac28854";
-
-            Uri requestUrl = new Uri($"{baseUrl}track.lyrics.get?commontrack_id={ID}&apikey={apiKey}");
-            string lyrics;
-            using (var httpClient = new HttpClient())
-            {
-                var json = await httpClient.GetStringAsync(requestUrl);
-                dynamic info = JsonConvert.DeserializeObject(json);
-                lyrics = info.message.body.lyrics.lyrics_body;
-            }
-            return lyrics;
-        }
+        
 
         private void FavoriteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            //I dont think interacting with the model here is against MVVM, as I don't need to view anything.
             using(var db = new FavoriteSongsContext())
             {
                 db.Favorites.Add(Song.song);
