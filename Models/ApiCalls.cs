@@ -35,14 +35,13 @@ namespace Lyric_Finder.Models
             {
                 var json = await httpClient.GetStringAsync(requestUrl);
                 dynamic info = JsonConvert.DeserializeObject(json);
-                foreach (string id in info.message.body.track_list.commontrack_id)
+                foreach (var track in info.message.body.track_list)
                 {
-                    
                     Song song = new Song();
                     
-                    song.Artist = info.message.body.track_list.track_id.artist_name;
-                    //song.Title = track.track_name;
-                    song.MusixmatchID = id;
+                    song.Artist = track.track.artist_name;
+                    song.Title = track.track.track_name;
+                    song.MusixmatchID = track.track.commontrack_id;
                     songs.Add(song);
                 }
 
