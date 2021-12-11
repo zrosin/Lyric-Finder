@@ -13,33 +13,38 @@ namespace Lyric_Finder
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MusicViewModel music;
+        MusicViewModel music;
         
+        /*
         public MessageViewModel message;
         public BodyViewModel body;
         public TrackItemViewModel trackItem;
         public TrackViewModel track;
-        
+        */
 
         public MainPage()
         {
             this.InitializeComponent();
             music = new MusicViewModel();
+
+            /*
             message = new MessageViewModel();
             body = new BodyViewModel();
             trackItem = new TrackItemViewModel();
             track = new TrackViewModel();
+            */
             
 
         }
-       
+        
+
         private void SearchClick(object sender, RoutedEventArgs e)
         {
             if (searchType.SelectedItem != null)
             {
                 string type = ((ComboBoxItem)searchType.SelectedItem).Content.ToString();
 
-                music.GetSearch(searchText.Text, type);
+                music.QueryTrack(searchText.Text, type);
                
             }
             

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lyric_Finder.Models
 {
-    class Song
+    public class Song
     {
         public string Title { get; set; }
         public string Artist { get; set; }

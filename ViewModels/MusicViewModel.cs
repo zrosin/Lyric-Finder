@@ -10,21 +10,30 @@ using System.Threading.Tasks;
 
 namespace Lyric_Finder.ViewModels
 {
+
     public class MusicViewModel
     {
-        private Music music;
+
+
+        public ObservableCollection<Song> songList;
         
         public MusicViewModel()
         {
-            this.music = new Music();
+            songList = new ObservableCollection<Song>();
         }
 
+        public async void QueryTrack(string search, string type)
+        {
+            songList = await ApiCalls.GetSearch(search, type);
+        }
+
+        /*
         public Message message
         {
             get { return music.message; }
             set { music.message = value; }
         }
-
+        
         public void GetSearch(string search, string type)
         {
 
@@ -39,8 +48,12 @@ namespace Lyric_Finder.ViewModels
             }
 
         }
+        */
+
+        
     }
 
+    /*
     public class MessageViewModel
     {
         private Message message;
@@ -118,7 +131,7 @@ namespace Lyric_Finder.ViewModels
         }
     }
 
-    /*
+    
     public class MusicSearcherViewModel
     {
         private MusicSearcher musicSearcher;

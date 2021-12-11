@@ -14,21 +14,18 @@
             <ComboBoxItem Content="Lyrics"/>
             <ComboBoxItem Content="Artist"/>
         </ComboBox>
-        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{x:Bind music.message.body.track_list, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top" ItemClick="SearchListView_ItemClick">
+        <ListView  x:Name="SearchListView" Margin="0,213,136,0" ItemsSource="{ x:Bind music.songList, Mode=OneWay}" HorizontalAlignment="Right" Width="836" Height="665" VerticalAlignment="Top" ItemClick="SearchListView_ItemClick">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:TrackItemViewModel">
+                <DataTemplate x:DataType="local:MusicViewModel">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind track.track_name, Mode=OneWay}" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{x:Bind track.artist_name, Mode=OneWay}"></TextBlock>
+                        <TextBlock Text="{ Binding Path=Title, Mode=OneWay}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{ Binding Path=Artist, Mode=OneWay}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Button Content="Search" Height="40" Margin="0,123,369,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="137" Click="SearchClick"/>
         <TextBox x:Name="searchText" PlaceholderText="Search..." TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,127,554,0" HorizontalAlignment="Right" Width="418"/>
-
-
-        <Button Content="Button" Margin="0,0,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Page>
