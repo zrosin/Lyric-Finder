@@ -37,8 +37,5 @@ Samuel McKinney
 	- Xaml organization and resize of main page
 	- Xaml organization of favorite button
 
-It can without a doubt be said that Zach Rosin has been responsible
-for the largest progress in this project, but it has been agreed that 
-both have given a strong effort in building this project.
-So the work is 50/50.
+Work was 50/50.
 
