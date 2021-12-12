@@ -16,18 +16,19 @@ namespace Lyric_Finder
     public sealed partial class MainPage : Page
     {
         MusicViewModel music;
-        ObservableCollection<Song> songs;
 
         FavoriteSongsViewModel favoriteSongsList = new FavoriteSongsViewModel();
 
         public MainPage()
         {
             this.InitializeComponent();
+
             music = new MusicViewModel();
             //this.DataContext = songs;
             FavoritesListView.ItemsSource = favoriteSongsList.favoriteSongs;
             
 
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
         
 
