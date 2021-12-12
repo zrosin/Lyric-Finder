@@ -8,10 +8,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1014">
 
-    <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,60,0,0" Text="{Binding Path=Title, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,100,0,0" Text="{Binding Path=Artist, Mode=OneWay}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="20,150,20,20" Text="{Binding Path=Lyrics, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="favoriteButton" Content="Favorite" Margin="1059,48,0,0" VerticalAlignment="Top" Click="FavoriteButton_Click"/>
-    </Grid>
+    <RelativePanel HorizontalAlignment="Center" Margin="0,44,0,0">
+        <Grid x:Name="myGrid" RelativePanel.AlignTopWithPanel="True">
+            <TextBlock x:Name="title" Margin="0,60,0,0" Text="{Binding Path=Title, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,100,0,0" Text="{Binding Path=Artist, Mode=OneWay}" VerticalAlignment="Top"/>
+            <TextBlock Margin="20,150,20,20" Text="{Binding Path=Lyrics, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="favoriteButton" RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="myGrid"  Content="Favorite" Margin="0,79,381,0" VerticalAlignment="Top" Click="FavoriteButton_Click" HorizontalAlignment="Right" Width="69" Height="31"/>
+    </RelativePanel>
 </Page>

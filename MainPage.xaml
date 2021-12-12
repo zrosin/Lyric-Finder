@@ -21,7 +21,7 @@
 
         <ListView  x:Name="SearchListView" Margin="417,187,46,28" ItemsSource="{ x:Bind music.songList, Mode=OneWay}" ItemClick="SearchListView_ItemClick" IsItemClickEnabled="True">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Song">
+                <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{ Binding Path=Title, Mode=OneWay}" FontWeight="Bold"></TextBlock>
                         <TextBlock Text="{ Binding Path=Artist, Mode=OneWay}"></TextBlock>
