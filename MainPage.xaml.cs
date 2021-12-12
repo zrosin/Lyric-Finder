@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Lyric_Finder
@@ -30,7 +31,13 @@ namespace Lyric_Finder
 
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
-        
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            favoriteSongsList = new FavoriteSongsViewModel();
+
+            FavoritesListView.ItemsSource = favoriteSongsList.favoriteSongs;
+        }
 
         private async void SearchClick(object sender, RoutedEventArgs e)
         {
