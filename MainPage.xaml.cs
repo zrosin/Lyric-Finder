@@ -44,9 +44,7 @@ namespace Lyric_Finder
             if (searchType.SelectedItem != null)
             {
                 string type = ((ComboBoxItem)searchType.SelectedItem).Content.ToString();
-
-                int a = await music.QueryTrack(searchText.Text, type);
-
+                _ = await music.QueryTrack(searchText.Text, type);
                 SearchListView.ItemsSource = music.songList;
             }
         }
